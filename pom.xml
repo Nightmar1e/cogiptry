@@ -8,13 +8,14 @@
 		<version>3.1.3</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.becode</groupId>
-	<artifactId>cogip</artifactId>
+	<groupId>security_tutorial</groupId>
+	<artifactId>codingtechniques_tutorial</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>cogip</name>
-	<description>cogip</description>
+	<name>codingtechniques_tutorial</name>
+	<description>User and Admin Login and Registration Tutoral</description>
 	<properties>
-		<java.version>20</java.version>
+		<java.version>17</java.version>
+<!--		<maven-jar-plugin.version>3.1.3</maven-jar-plugin.version>-->
 	</properties>
 	<dependencies>
 		<dependency>
@@ -50,11 +51,6 @@
 			<scope>runtime</scope>
 		</dependency>
 		<dependency>
-			<groupId>org.postgresql</groupId>
-			<artifactId>postgresql</artifactId>
-			<scope>runtime</scope>
-		</dependency>
-		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
@@ -63,10 +59,6 @@
 			<groupId>org.springframework.security</groupId>
 			<artifactId>spring-security-test</artifactId>
 			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.projectlombok</groupId>
-			<artifactId>lombok</artifactId>
 		</dependency>
 	</dependencies>
 
