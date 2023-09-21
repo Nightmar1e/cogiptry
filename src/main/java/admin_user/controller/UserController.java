@@ -1,10 +1,14 @@
 package admin_user.controller;
 
 import java.security.Principal;
+import java.util.List;
 
+import admin_user.model.Products;
+import admin_user.repositories.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,13 +17,19 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import admin_user.dto.UserDto;
 import admin_user.service.UserService;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
+@RequestMapping("/")
 public class UserController {
-	
+	@Autowired
+	private PasswordEncoder passwordEncoder;
+
 	@Autowired
 	UserDetailsService userDetailsService;
-	
+	@Autowired
+	private ProductRepository productService;
+
 	@Autowired
 	private UserService userService;
 	
@@ -45,14 +55,20 @@ public class UserController {
 	public String userPage (Model model, Principal principal) {
 		UserDetails userDetails = userDetailsService.loadUserByUsername(principal.getName());
 		model.addAttribute("user", userDetails);
+		List<Products> allProducts = productService.findAll();
+		model.addAttribute("all_products", allProducts);
 		return "user";
 	}
-	
+
 	@GetMapping("admin-page")
-	public String adminPage (Model model, Principal principal) {
+	public String adminPage(Model model, Principal principal) {
 		UserDetails userDetails = userDetailsService.loadUserByUsername(principal.getName());
 		model.addAttribute("user", userDetails);
+		List<Products> allProducts = productService.findAll();
+		model.addAttribute("all_products", allProducts);
+
 		return "admin";
 	}
+
 
 }
