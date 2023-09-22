@@ -4,7 +4,7 @@ import java.security.Principal;
 import java.util.List;
 
 import admin_user.model.Products;
-import admin_user.repositories.ProductRepository;
+import admin_user.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
