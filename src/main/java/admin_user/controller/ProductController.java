@@ -24,12 +24,12 @@ public class ProductController {
     @Autowired
     private ProductRepository productService;
 
-//    @GetMapping("/")
-//    public String home(Model m) {
-//        List<Products> list = productService.findAll(); m.addAttribute("all_products",
-//                list);
-//        return "admin";
-//    }
+    @GetMapping("/")
+    public String home(Model m) {
+        List<Products> list = productService.findAll(); m.addAttribute("all_products",
+                list);
+        return "admin";
+    }
 
     @GetMapping("/load_form")
     public String loadForm(Model model) {
@@ -47,21 +47,21 @@ public class ProductController {
     @PostMapping("/save_products")
     public String saveProducts(@ModelAttribute Products products, HttpSession session) {
         productService.save(products);
-        session.setAttribute("msg", "Product Added Successfully..");
-        return "redirect:admin-page/load_form";
+//        session.setAttribute("msg", "Product Added Successfully..");
+        return "redirect:/admin-page/load_form";
     }
 
     @PostMapping("/update_products")
     public String updateProducts(@ModelAttribute Products products, HttpSession session) {
         productService.save(products);
-        session.setAttribute("msg", "Product Update Successfully..");
-        return "redirect:admin-page/";
+//        session.setAttribute("msg", "Product Update Successfully..");
+        return "redirect:/admin-page";
     }
 
     @GetMapping("/delete/{id}")
     public String deleteProducts(@PathVariable(value = "id") long id, HttpSession session) {
         productService.deleteById(id);
-        session.setAttribute("msg", "Product Delete Successfully..");
-        return "admin";
+//        session.setAttribute("msg", "Product Delete Successfully..");
+        return "redirect:/admin-page";
     }
 }

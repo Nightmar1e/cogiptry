@@ -26,10 +26,10 @@
             <div class="row">
                 <div class="col-md-8 offset-md-2">
                     <div class="card">
-                        <div th:if="${session.msg}">
-                            <h5 class="text-center text-success" th:text="${session.msg}"></h5>
-                            <th:block th:text="${#session.removeAttribute('msg')}"></th:block>
-                        </div>
+<!--                        <div th:if="${session.msg}">-->
+<!--                            <h5 class="text-center text-success" th:text="${session.msg}"></h5>-->
+<!--                            <th:block th:text="${#session.removeAttribute('msg')}"></th:block>-->
+<!--                        </div>-->
                         <div class="card-header">
                             <a href="/admin-page/load_form" class="btn btn-primary">Add Products</a>
                         </div>
@@ -39,10 +39,10 @@
                             <table class="table">
                                 <thead>
                                 <tr>
-                                    <th scope="col"><a th:href="@{'/page/'+${pageNo}+'?sortField=id&sortDir='+${revSortDir}}">Id</a></th>
-                                    <th scope="col"><a th:href="@{'/page/'+${pageNo}+'?sortField=productName&sortDir='+${revSortDir}}">Name</a></th>
+                                    <th scope="col">Id</th>
+                                    <th scope="col">Name</th>
                                     <th scope="col">Description</th>
-                                    <th scope="col"><a th:href="@{'/page/'+${pageNo}+'?sortField=price&sortDir='+${revSortDir}}">Price</a></th>
+                                    <th scope="col">Price</th>
                                     <th scope="col">Quantity</th>
                                     <th scope="col">Action</th>
                                 </tr>
