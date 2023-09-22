@@ -18,9 +18,9 @@
     <div class="container">
         <h2>Welcome, [[${user.getFullname()}]]</h2>
         <span sec:authorize="isAuthenticated">
-        <a th:href="@{/logout}">
-         Logout
-        </a>
+        <a th:href="@{/logout}">Logout</a>
+        <a th:href="@{/admin-page/students}">Students</a>
+
         </span>
         <div class="container p-5">
             <div class="row">
