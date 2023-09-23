@@ -1,6 +1,11 @@
 package admin_user.model;
 
+
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
 import jakarta.persistence.*;
+
+import java.util.List;
 
 @Entity
 @Table(name = "companies")
@@ -10,47 +15,61 @@ public class Company {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "first_name", nullable = false)
-    private String firstName;
+    private String name;
+    private String vatNumber;
 
-    @Column(name = "last_name")
-    private String lastName;
+    @OneToMany(mappedBy = "associatedCompany", cascade = CascadeType.ALL)
+    private List<Product> products;
 
-    @Column(name = "email")
-    private String email;
+    @OneToMany(mappedBy = "affiliatedCompany", cascade = CascadeType.ALL)
+    private List<Contact> contacts;
 
     public Company() {
-
+        // Default constructor
     }
 
-    public Company(String firstName, String lastName, String email) {
-        super();
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.email = email;
+    public Company(String name, String vatNumber) {
+        this.name = name;
+        this.vatNumber = vatNumber;
     }
+
     public Long getId() {
         return id;
     }
+
     public void setId(Long id) {
         this.id = id;
     }
-    public String getFirstName() {
-        return firstName;
+
+    public String getName() {
+        return name;
     }
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
+
+    public void setName(String name) {
+        this.name = name;
     }
-    public String getLastName() {
-        return lastName;
+
+    public String getVatNumber() {
+        return vatNumber;
     }
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+
+    public void setVatNumber(String vatNumber) {
+        this.vatNumber = vatNumber;
     }
-    public String getEmail() {
-        return email;
+
+    public List<Product> getProducts() {
+        return products;
     }
-    public void setEmail(String email) {
-        this.email = email;
+
+    public void setProducts(List<Product> products) {
+        this.products = products;
+    }
+
+    public List<Contact> getContacts() {
+        return contacts;
+    }
+
+    public void setContacts(List<Contact> contacts) {
+        this.contacts = contacts;
     }
 }

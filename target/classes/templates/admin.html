@@ -42,20 +42,21 @@
                                 <tr>
                                     <th scope="col">Id</th>
                                     <th scope="col">Name</th>
-                                    <th scope="col">Description</th>
-                                    <th scope="col">Price</th>
-                                    <th scope="col">Quantity</th>
-                                    <th scope="col">Action</th>
+                                    <th scope="col">Number</th>
+                                    <th scope="col">Date</th>
+                                    <th scope="col">Company</th>
+                                    <th scope="col">Contact</th>
                                 </tr>
                                 </thead>
                                 <tbody>
 
                                 <tr th:each="p : ${all_products}">
                                     <th scope="row">[[${p.id}]]</th>
-                                    <td>[[${p.productName}]]</td>
-                                    <td>[[${p.description}]]</td>
-                                    <td>[[${p.price}]]</td>
-                                    <td>[[${p.quantity}]]</td>
+                                    <td>[[${p.name}]]</td>
+                                    <td>[[${p.number}]]</td>
+                                    <td>[[${p.date}]]</td>
+                                    <td>[[${p.associatedCompany}]]</td>
+                                    <td>[[${p.contact}]]</td>
                                     <td><a th:href="@{'/admin-page/edit_form/'+${p.id}   }"
                                            class="btn btn-sm btn-primary">Edit </a> <a
                                             th:href="@{'/admin-page/delete/'+${p.id}}" class="btn btn-sm btn-danger">Delete

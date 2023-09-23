@@ -57,9 +57,9 @@ public class CompanyController {
         // get company from database by id
         Company existingCompany = companyService.getCompanyById(id);
         existingCompany.setId(id);
-        existingCompany.setFirstName(company.getFirstName());
-        existingCompany.setLastName(company.getLastName());
-        existingCompany.setEmail(company.getEmail());
+        existingCompany.setVatNumber(company.getVatNumber());
+        existingCompany.setProducts(company.getProducts());
+        existingCompany.setContacts(company.getContacts());
 
         // save updated company object
         companyService.updateCompany(existingCompany);
