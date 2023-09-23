@@ -3,8 +3,8 @@ package admin_user.model;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "students")
-public class Student {
+@Table(name = "companies")
+public class Company {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -19,11 +19,11 @@ public class Student {
     @Column(name = "email")
     private String email;
 
-    public Student() {
+    public Company() {
 
     }
 
-    public Student(String firstName, String lastName, String email) {
+    public Company(String firstName, String lastName, String email) {
         super();
         this.firstName = firstName;
         this.lastName = lastName;

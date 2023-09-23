@@ -2,14 +2,14 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="ISO-8859-1">
-    <title>Student Management System</title>
+    <title>Company Management System</title>
     <link rel="stylesheet" th:href="@{/css/adds.css}">
 
 </head>
 <body>
 <nav class="navbar navbar-expand-md bg-dark navbar-dark">
     <!-- Brand -->
-    <a class="navbar-brand" href="#">Student Management System</a>
+    <a class="navbar-brand" href="#">Company Management System</a>
 
     <!-- Toggler/collapsibe Button -->
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
@@ -20,7 +20,7 @@
     <div class="collapse navbar-collapse" id="collapsibleNavbar">
         <ul class="navbar-nav">
             <li class="nav-item">
-                <a class="nav-link" th:href="@{/admin-page/students}">Student Management</a>
+                <a class="nav-link" th:href="@{/admin-page/companies}">Company Management</a>
             </li>
         </ul>
     </div>
@@ -30,39 +30,39 @@
 <div class = "container">
     <div class = "row">
         <div class ="col-lg-6 col-md-6 col-sm-6 container justify-content-center card">
-            <h1 class = "text-center"> Update Student </h1>
+            <h1 class = "text-center"> Update Company </h1>
             <div class = "card-body">
-                <form th:action="@{/admin-page/students/{id} (id=${student.id})}" th:object = "${student}" method="POST">
+                <form th:action="@{/admin-page/companies/{id} (id=${company.id})}" th:object = "${company}" method="POST">
                     <div class ="form-group">
-                        <label> Student First Name </label>
+                        <label> Company First Name </label>
                         <input
                                 type = "text"
                                 name = "firstName"
                                 th:field = "*{firstName}"
                                 class = "form-control"
-                                placeholder="Enter Student First Name"
+                                placeholder="Enter Company First Name"
                         />
                     </div>
 
                     <div class ="form-group">
-                        <label> Student Last Name </label>
+                        <label> Company Last Name </label>
                         <input
                                 type = "text"
                                 name = "lastName"
                                 th:field = "*{lastName}"
                                 class = "form-control"
-                                placeholder="Enter Student Last Name"
+                                placeholder="Enter Company Last Name"
                         />
                     </div>
 
                     <div class ="form-group">
-                        <label> Student Email </label>
+                        <label> Company Email </label>
                         <input
                                 type = "text"
                                 name = "email"
                                 th:field = "*{email}"
                                 class = "form-control"
-                                placeholder="Enter Student Email"
+                                placeholder="Enter Company Email"
                         />
                     </div>
 
