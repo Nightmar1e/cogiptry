@@ -2,8 +2,6 @@ package admin_user.model;
 
 import jakarta.persistence.*;
 
-import java.util.List;
-
 @Entity
 @Table(name = "contacts")
 public class Contact {
@@ -16,26 +14,22 @@ public class Contact {
     private String lastName;
     private String email;
 
-    @ManyToOne
+    @OneToOne
     @JoinColumn(name = "company_id")
-    private Company affiliatedCompany;
+    private Company company;
 
-    @ManyToMany
-    @JoinTable(
-            name = "contact_product",
-            joinColumns = @JoinColumn(name = "contact_id"),
-            inverseJoinColumns = @JoinColumn(name = "product_id")
-    )
-    private List<Product> linkedProducts;
+    @OneToOne
+    @JoinColumn(name = "product_id")
+    private Product product;
+
     public Contact() {
         // Default constructor
     }
 
-    public Contact(String firstName, String lastName, String email, Company affiliatedCompany) {
+    public Contact(String firstName, String lastName, String email) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
-        this.affiliatedCompany = affiliatedCompany;
     }
 
     public Long getId() {
@@ -70,19 +64,19 @@ public class Contact {
         this.email = email;
     }
 
-    public Company getAffiliatedCompany() {
-        return affiliatedCompany;
+    public Company getCompany() {
+        return company;
     }
 
-    public void setAffiliatedCompany(Company affiliatedCompany) {
-        this.affiliatedCompany = affiliatedCompany;
+    public void setCompany(Company company) {
+        this.company = company;
     }
 
-    public List<Product> getLinkedProducts() {
-        return linkedProducts;
+    public Product getProduct() {
+        return product;
     }
 
-    public void setLinkedProducts(List<Product> linkedProducts) {
-        this.linkedProducts = linkedProducts;
+    public void setProduct(Product product) {
+        this.product = product;
     }
 }

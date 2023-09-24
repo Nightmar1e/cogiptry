@@ -1,8 +1,6 @@
 package admin_user.model;
 
 
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
 import jakarta.persistence.*;
 
 import java.util.List;
@@ -18,11 +16,11 @@ public class Company {
     private String name;
     private String vatNumber;
 
-    @OneToMany(mappedBy = "associatedCompany", cascade = CascadeType.ALL)
-    private List<Product> products;
+    @OneToOne(mappedBy = "company", cascade = CascadeType.ALL)
+    private Contact contact;
 
-    @OneToMany(mappedBy = "affiliatedCompany", cascade = CascadeType.ALL)
-    private List<Contact> contacts;
+    @OneToMany(mappedBy = "company", cascade = CascadeType.ALL)
+    private List<Product> products;
 
     public Company() {
         // Default constructor
@@ -57,19 +55,19 @@ public class Company {
         this.vatNumber = vatNumber;
     }
 
+    public Contact getContact() {
+        return contact;
+    }
+
+    public void setContact(Contact contact) {
+        this.contact = contact;
+    }
+
     public List<Product> getProducts() {
         return products;
     }
 
     public void setProducts(List<Product> products) {
         this.products = products;
-    }
-
-    public List<Contact> getContacts() {
-        return contacts;
-    }
-
-    public void setContacts(List<Contact> contacts) {
-        this.contacts = contacts;
     }
 }

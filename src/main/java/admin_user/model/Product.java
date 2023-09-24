@@ -2,16 +2,12 @@ package admin_user.model;
 
 
 import jakarta.persistence.*;
-import org.springframework.data.annotation.Id;
-
 import java.util.Date;
-import java.util.List;
 
 @Entity
 @Table(name = "products")
 public class Product {
 
-    @jakarta.persistence.Id
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -22,24 +18,19 @@ public class Product {
 
     @ManyToOne
     @JoinColumn(name = "company_id")
-    private Company associatedCompany;
+    private Company company;
 
-//    private String companyType;
-
-    @ManyToMany(mappedBy = "linkedProducts")
-    private List<Contact> contacts;
+    @OneToOne(mappedBy = "product", cascade = CascadeType.ALL)
+    private Contact contact;
 
     public Product() {
         // Default constructor
     }
 
-    public Product(String name, String number, Date date, Company associatedCompany, String companyType, Contact contact) {
+    public Product(String name, String number, Date date) {
         this.name = name;
         this.number = number;
         this.date = date;
-        this.associatedCompany = associatedCompany;
-//        this.companyType = companyType;
-        this.contacts = contacts;
     }
 
     public Long getId() {
@@ -74,28 +65,19 @@ public class Product {
         this.date = date;
     }
 
-    public Company getAssociatedCompany() {
-        return associatedCompany;
+    public Company getCompany() {
+        return company;
     }
 
-    public void setAssociatedCompany(Company associatedCompany) {
-        this.associatedCompany = associatedCompany;
+    public void setCompany(Company company) {
+        this.company = company;
     }
 
-//    public String getCompanyType() {
-//        return companyType;
-//    }
-//    public void setCompanyType(String companyType) {
-//        this.companyType = companyType;
-//    }
-
-    public List<Contact> getContact() {
-        return contacts;
+    public Contact getContact() {
+        return contact;
     }
 
     public void setContact(Contact contact) {
-        this.contacts = contacts;
+        this.contact = contact;
     }
-
-
 }

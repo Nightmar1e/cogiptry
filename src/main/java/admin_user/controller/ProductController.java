@@ -1,9 +1,7 @@
 package admin_user.controller;
 
 import admin_user.model.Product;
-import admin_user.repository.ProductRepository;
-import jakarta.servlet.http.HttpSession;
-import org.springframework.beans.factory.annotation.Autowired;
+import admin_user.service.ProductService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -14,48 +12,58 @@ import java.util.Optional;
 @Controller
 @RequestMapping("/admin-page")
 public class ProductController {
+    private ProductService productService;
 
-    @Autowired
-    private ProductRepository productService;
-
-    @GetMapping("/")
-    public String home(Model m) {
-        List<Product> list = productService.findAll(); m.addAttribute("all_products",
-                list);
-        return "admin";
+    public ProductController(ProductService productService) {
+        this.productService = productService;
     }
 
-    @GetMapping("/load_form")
-    public String loadForm(Model model) {
-        return "add";
+    @GetMapping("/products")
+    public String listProducts(Model model) {
+        List<Product> products = productService.getAllProducts();
+        model.addAttribute("products", products);
+        return "products";
     }
 
-    @GetMapping("/edit_form/{id}")
-    public String editForm(@PathVariable(value = "id") long id, Model model) {
-        Optional<Product> product = productService.findById(id);
-        Product pro = product.orElse(new Product()); // Handle not-found case gracefully
-        model.addAttribute("product", pro);
-        return "edit"; // Return the view name for the product edit form
+    @GetMapping("/products/new")
+    public String createProductForm(Model model) {
+        Product product = new Product();
+        model.addAttribute("product", product);
+        return "add_product";
     }
 
-    @PostMapping("/save_products")
-    public String saveProducts(@ModelAttribute Product product, HttpSession session) {
-        productService.save(product);
-//        session.setAttribute("msg", "Product Added Successfully..");
-        return "redirect:/admin-page/load_form";
+    @PostMapping("/products")
+    public String saveProduct(@ModelAttribute("product") Product product) {
+        productService.saveProduct(product);
+        return "redirect:/admin-page/products";
     }
 
-    @PostMapping("/update_products")
-    public String updateProducts(@ModelAttribute Product product, HttpSession session) {
-        productService.save(product);
-//        session.setAttribute("msg", "Product Update Successfully..");
-        return "redirect:/admin-page";
+    @GetMapping("/products/edit/{id}")
+    public String editProductForm(@PathVariable Long id, Model model) {
+        model.addAttribute("product", productService.getProductById(id));
+        return "edit_product";
     }
 
-    @GetMapping("/delete/{id}")
-    public String deleteProducts(@PathVariable(value = "id") long id, HttpSession session) {
-        productService.deleteById(id);
-//        session.setAttribute("msg", "Product Delete Successfully..");
-        return "redirect:/admin-page";
+    @PostMapping("/products/{id}")
+    public String updateProduct(@PathVariable Long id,
+                                @ModelAttribute("product") Product product,
+                                Model model) {
+
+        Product existingProduct = productService.getProductById(id);
+        existingProduct.setId(id);
+        existingProduct.setName(product.getName());
+        existingProduct.setNumber(product.getNumber());
+        existingProduct.setDate(product.getDate());
+        existingProduct.setCompany(product.getCompany());
+        existingProduct.setContact(product.getContact());
+
+        productService.updateProduct(existingProduct);
+        return "redirect:/admin-page/products";
+    }
+
+    @GetMapping("/products/{id}")
+    public String deleteProduct(@PathVariable Long id) {
+        productService.deleteProductById(id);
+        return "redirect:/admin-page/products";
     }
 }

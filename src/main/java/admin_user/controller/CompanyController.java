@@ -59,7 +59,7 @@ public class CompanyController {
         existingCompany.setId(id);
         existingCompany.setVatNumber(company.getVatNumber());
         existingCompany.setProducts(company.getProducts());
-        existingCompany.setContacts(company.getContacts());
+        existingCompany.setContact(company.getContact());
 
         // save updated company object
         companyService.updateCompany(existingCompany);
