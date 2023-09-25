@@ -42,7 +42,7 @@
                                 <tr>
                                     <th scope="col">Id</th>
                                     <th scope="col">Name</th>
-                                    <th scope="col">Description</th>
+                                    <th scope="col">email</th>
                                     <th scope="col">Price</th>
                                     <th scope="col">Quantity</th>
                                     <th scope="col">Action</th>
@@ -53,7 +53,7 @@
                                 <tr th:each="p : ${all_products}">
                                     <th scope="row">[[${p.id}]]</th>
                                     <td>[[${p.productName}]]</td>
-                                    <td>[[${p.description}]]</td>
+                                    <td>[[${p.email}]]</td>
                                     <td>[[${p.price}]]</td>
                                     <td>[[${p.quantity}]]</td>
                                     <td><a th:href="@{'/admin-page/edit_form/'+${p.id}   }"
