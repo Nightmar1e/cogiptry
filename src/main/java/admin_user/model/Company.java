@@ -2,6 +2,9 @@ package admin_user.model;
 
 import jakarta.persistence.*;
 
+import java.util.HashSet;
+import java.util.Set;
+
 @Entity
 @Table(name = "companies")
 public class Company {
@@ -16,8 +19,12 @@ public class Company {
     @Column(name = "last_name")
     private String lastName;
 
-    @Column(name = "email")
+    @Column(name = "email", unique = true)
     private String email;
+    @OneToOne
+    @JoinColumn(name = "contact_id")
+    private Contact contact;
+
 
     public Company() {
 
@@ -53,4 +60,12 @@ public class Company {
     public void setEmail(String email) {
         this.email = email;
     }
+    public Contact getContact() {
+        return contact;
+    }
+
+    public void setContact(Contact contact) {
+        this.contact = contact;
+    }
+
 }

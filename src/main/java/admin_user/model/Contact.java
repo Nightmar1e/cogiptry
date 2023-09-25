@@ -2,6 +2,9 @@ package admin_user.model;
 
 import jakarta.persistence.*;
 
+import java.util.HashSet;
+import java.util.Set;
+
 @Entity
 @Table(name = "contacts")
 public class Contact {
@@ -15,8 +18,10 @@ public class Contact {
     @Column(name = "last_name")
     private String lastName;
 
-    @Column(name = "email")
+    @Column(name = "email", unique = true)
     private String email;
+    @OneToOne(mappedBy = "contact")
+    private Company company;
 
     public Contact() {
 
@@ -52,5 +57,13 @@ public class Contact {
     public void setEmail(String email) {
         this.email = email;
     }
+    public Company getCompany() {
+        return company;
+    }
+
+    public void setCompany(Company company) {
+        this.company = company;
+    }
+
 }
 
