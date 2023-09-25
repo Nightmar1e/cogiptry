@@ -29,8 +29,6 @@ public class CompanyController {
 
     @GetMapping("/companies/new")
     public String createCompanyForm(Model model) {
-
-        // create company object to hold company form data
         Company company = new Company();
         model.addAttribute("company", company);
         return "add_company";

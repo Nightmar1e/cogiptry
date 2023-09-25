@@ -29,7 +29,7 @@ public class ProductController {
     public String createProductForm(Model model) {
         Product product = new Product();
         model.addAttribute("product", product);
-        return "add_product";
+        return "add";
     }
 
     @PostMapping("/products")
@@ -41,7 +41,7 @@ public class ProductController {
     @GetMapping("/products/edit/{id}")
     public String editProductForm(@PathVariable Long id, Model model) {
         model.addAttribute("product", productService.getProductById(id));
-        return "edit_product";
+        return "edit";
     }
 
     @PostMapping("/products/{id}")
