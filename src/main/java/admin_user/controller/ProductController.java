@@ -18,33 +18,33 @@ public class ProductController {
         this.productService = productService;
     }
 
-    @GetMapping("/products")
+    @GetMapping("/")
     public String listProducts(Model model) {
         List<Product> products = productService.getAllProducts();
         model.addAttribute("products", products);
-        return "products";
+        return "admin";
     }
 
-    @GetMapping("/products/new")
+    @GetMapping("/new")
     public String createProductForm(Model model) {
         Product product = new Product();
         model.addAttribute("product", product);
         return "add";
     }
 
-    @PostMapping("/products")
+    @PostMapping("/save_products")
     public String saveProduct(@ModelAttribute("product") Product product) {
         productService.saveProduct(product);
-        return "redirect:/admin-page/products";
+        return "redirect:/admin-page";
     }
 
-    @GetMapping("/products/edit/{id}")
+    @GetMapping("/edit/{id}")
     public String editProductForm(@PathVariable Long id, Model model) {
         model.addAttribute("product", productService.getProductById(id));
         return "edit";
     }
 
-    @PostMapping("/products/{id}")
+    @PostMapping("/{id}")
     public String updateProduct(@PathVariable Long id,
                                 @ModelAttribute("product") Product product,
                                 Model model) {
@@ -58,12 +58,12 @@ public class ProductController {
         existingProduct.setContact(product.getContact());
 
         productService.updateProduct(existingProduct);
-        return "redirect:/admin-page/products";
+        return "redirect:/admin-page";
     }
 
-    @GetMapping("/products/{id}")
+    @GetMapping("/{id}")
     public String deleteProduct(@PathVariable Long id) {
         productService.deleteProductById(id);
-        return "redirect:/admin-page/products";
+        return "redirect:/admin-page";
     }
 }

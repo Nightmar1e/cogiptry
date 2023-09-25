@@ -32,7 +32,7 @@
 <!--                            <th:block th:text="${#session.removeAttribute('msg')}"></th:block>-->
 <!--                        </div>-->
                         <div class="card-header">
-                            <a href="/admin-page/load_form" class="btn btn-primary">Add Products</a>
+                            <a href="/admin-page/new" class="btn btn-primary">Add Products</a>
                         </div>
 
                         <div class="card-body">
@@ -50,12 +50,12 @@
                                 </thead>
                                 <tbody>
 
-                                <tr th:each="p : ${all_products}">
+                                <tr th:each="p : ${products}">
                                     <th scope="row">[[${p.id}]]</th>
                                     <td>[[${p.name}]]</td>
                                     <td>[[${p.number}]]</td>
                                     <td>[[${p.date}]]</td>
-                                    <td>[[${p.associatedCompany}]]</td>
+                                    <td>[[${p.company}]]</td>
                                     <td>[[${p.contact}]]</td>
                                     <td><a th:href="@{'/admin-page/edit_form/'+${p.id}   }"
                                            class="btn btn-sm btn-primary">Edit </a> <a
