@@ -6,8 +6,10 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import jakarta.persistence.UniqueConstraint;
+import lombok.NoArgsConstructor;
 
 @Entity
+@NoArgsConstructor
 @Table(name = "users", uniqueConstraints = @UniqueConstraint(columnNames = "email"))
 public class User {
 	
@@ -19,10 +21,6 @@ public class User {
 	private String password;
 	private String role;
 	private String fullname;
-	
-	public User() {
-		super();
-	}
 
 	public User(String email, String password, String role, String fullname) {
 		
