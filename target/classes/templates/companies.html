@@ -46,6 +46,7 @@
       <th> Company First Name</th>
       <th> Company Last Name</th>
       <th> Company Email </th>
+      <th> Company Products </th>
       <th> Actions </th>
     </tr>
     </thead>
@@ -55,6 +56,13 @@
       <td th:text = "${company.firstName}"></td>
       <td th:text = "${company.lastName}"></td>
       <td th:text = "${company.email}"></td>
+      <td>
+        <span th:each="product : ${company.products}">
+            <span th:text="${product.productName}"></span>
+            <span th:if="${!#strings.isEmpty(product)}">, </span> <!-- Add a comma if there are more products -->
+        </span>
+      </td>
+
       <td>
         <a th:href = "@{/admin-page/companies/edit/{id}(id=${company.id})}"
            class = "btn btn-primary">Update</a>

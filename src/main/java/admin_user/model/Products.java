@@ -20,17 +20,22 @@ public class Products {
     private String price;
     private String quantity;
 
+
+    @ManyToOne
+    @JoinColumn(name = "company_first_name", referencedColumnName = "first_name")
+    private Company company;
+
     public Products() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
-    public Products(String productName, String description, String price, String quantity) {
+    public Products(String productName, String description, String price, String quantity, Company company) {
         super();
         this.productName = productName;
         this.email = description;
         this.price = price;
         this.quantity = quantity;
+        this.company = company;
     }
 
     public long getId() {
@@ -73,10 +78,17 @@ public class Products {
         this.quantity = quantity;
     }
 
+    public Company getCompany() {
+        return company;
+    }
+
+    public void setCompany(Company company) {
+        this.company = company;
+    }
     @Override
     public String toString() {
         return "Products [id=" + id + ", productName=" + productName + ", description=" + email + ", price="
-                + price + ", quantity=" + quantity + "]";
+                + price + ", quantity=" + quantity +", company="+ company + "]";
     }
 
 

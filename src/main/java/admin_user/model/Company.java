@@ -2,6 +2,9 @@ package admin_user.model;
 
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 @Table(name = "companies")
 public class Company {
@@ -10,24 +13,27 @@ public class Company {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "first_name", nullable = false)
+    @Column(name = "first_name", nullable = false, unique = true)
     private String firstName;
-
     @Column(name = "last_name")
     private String lastName;
 
     @Column(name = "email")
     private String email;
 
-    public Company() {
+    @OneToMany(mappedBy = "company")
+    private List<Products> products;
 
+    public Company() {
+        this.products = new ArrayList<>();
     }
 
-    public Company(String firstName, String lastName, String email) {
+    public Company(String firstName, String lastName, String email, List<Products> products) {
         super();
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
+        this.products = products;
     }
     public Long getId() {
         return id;
@@ -52,5 +58,12 @@ public class Company {
     }
     public void setEmail(String email) {
         this.email = email;
+    }
+    public List<Products> getProducts() {
+        return products;
+    }
+
+    public void setProducts(List<Products> products) {
+        this.products = products;
     }
 }
