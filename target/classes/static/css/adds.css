@@ -1,61 +1,182 @@
+/* Reset some default browser styles */
+body, h1, h2, h3, p, ul, li {
+    margin: 0;
+    padding: 0;
+}
+
+/* Set a background color for the body in dark mode (default) */
 body {
-    background-color: #0e2433;
-    color: white;
+    background-color: #333; /* Dark background color */
+    color: #fff; /* Light text color */
+    font-family: Arial, sans-serif;
 }
 
-.navbar {
-    background-color: #0e2433;
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #222; /* Dark header background color */
+    color: #fff; /* Light header text color */
+    padding: 10px 20px;
 }
 
-.navbar-brand {
-    color: white;
-    font-weight: bold;
-}
-
-.navbar-toggler-icon {
-    background-color: white;
-}
-
-.nav-link {
-    color: white !important;
-}
-
-.container {
-    background-color: #0e2433;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
-}
-
-.form-card {
-    background-color: #0e2433;
-    border-radius: 10px;
-    padding: 20px;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
-}
-
-.form-title {
-    color: white;
+/* Style the "Admin" title */
+.admin-title {
+    flex-grow: 1; /* Allow "Admin" to take up remaining space */
     text-align: center;
+    font-size: 24px;
+    margin: 0; /* Remove any default margin */
 }
 
-.form-group label {
-    color: white;
+/* Style the right menu */
+.right-menu {
+    display: flex;
+    align-items: center;
 }
 
-.form-control {
-    background-color: #0e2433;
-    color: white;
-    border-color: white;
+.right-menu a {
+    text-decoration: none;
+    color: #fff; /* Light text color */
+    margin-left: 20px; /* Add spacing between links */
+    font-weight: bold;
+    border-radius: 5px;
+    padding: 5px 10px;
+    transition: background-color 0.3s ease;
 }
 
+.right-menu a{
+    cursor: pointer;
+    background-color: #ff5555; /* Red button background color */
+}
+
+.right-menu a:hover {
+    background-color: #cc0000; /* Dark red button hover background color */
+}
+
+/* Add additional styling as needed for links */
+
+/* Style the container in dark mode (default) */
+.container {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #444; /* Dark container background color */
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Style navigation links in dark mode (default) */
+.container a {
+    text-decoration: none;
+    color: #bdbdbd; /* Light link color */
+    margin-right: 20px;
+}
+
+/* Style the "Add Company" button in dark mode (default) */
 .btn-primary {
-    background-color: #45b6fe;
-    border-color: #45b6fe;
-    color: white;
+    background-color: #0099cc; /* Light blue button background color */
+    color: #fff; /* Light button text color */
+    padding: 8px 16px;
+    border: none;
+    border-radius: 5px;
+    text-transform: uppercase;
+    cursor: pointer;
 }
 
 .btn-primary:hover {
-    background-color: #0e2433;
-    border-color: #0e2433;
+    background-color: #0077aa; /* Light blue button hover background color */
+}
+
+/* Style the table in dark mode (default) */
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.table th,
+.table td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+/* Style the table header in dark mode (default) */
+.table th {
+    background-color: #333; /* Dark table header background color */
+    color: #fff; /* Light table header text color */
+}
+
+/* Style the "Update" and "Delete" buttons in dark mode (default) */
+.btn-primary,
+.btn-danger {
+    padding: 5px 10px;
+    margin-right: 5px;
+    border: none;
+    border-radius: 3px;
+    text-transform: uppercase;
+    cursor: pointer;
+}
+
+.btn-primary:hover {
+    background-color: #0077aa; /* Light blue button hover background color */
+}
+
+.btn-danger:hover {
+    background-color: #cc0000; /* Light red button hover background color */
+}
+
+
+
+
+
+
+/* Light mode styles */
+.light-mode {
+    background-color: #818181; /* Slightly darker background color */
+    color: #333; /* Dark text color */
+}
+
+.light-mode .header {
+    background-color: #333; /* Dark header background color */
+    color: #fff; /* Light header text color */
+}
+
+.light-mode .header a {
+    background-color: #ff5555; /* Red button background color */
+}
+
+.light-mode .header a:hover {
+    background-color: #cc0000; /* Red button hover background color */
+}
+
+.light-mode .container {
+    background-color: #d4d4d4; /* Light container background color */
+    color: #333; /* Dark container text color */
+}
+
+.light-mode a {
+    color: #007bff; /* Blue link color */
+}
+
+.light-mode .btn-primary {
+    background-color: #007bff; /* Blue button background color */
+    color: #fff; /* Light button text color */
+}
+
+.light-mode .btn-primary:hover {
+    background-color: #0056b3; /* Dark blue button hover background color */
+}
+
+.light-mode .table th {
+    background-color: #f2f2f2; /* Light table header background color */
+    color: #333; /* Dark table header text color */
+}
+
+.light-mode .btn-danger {
+    background-color: #e74c3c; /* Red button background color */
+}
+
+.light-mode .btn-danger:hover {
+    background-color: #c0392b; /* Dark red button hover background color */
 }

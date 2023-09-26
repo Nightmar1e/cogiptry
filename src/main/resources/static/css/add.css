@@ -1,61 +1,129 @@
+/* Reset some default browser styles */
+body, h4, form, label, input, button {
+    margin: 0;
+    padding: 0;
+    border: none;
+}
+
+/* Set a background color for the body in dark mode (default) */
 body {
-    background-color: #0e2433;
+    background-color: #333; /* Dark background color */
+    color: #fff; /* Light text color */
     font-family: Arial, sans-serif;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
-    margin: 0;
+    min-height: 100vh;
 }
 
+/* Style the container */
 .container {
-    width: 100%;
-    max-width: 400px;
+    background-color: #444; /* Dark container background color */
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     padding: 20px;
-    box-sizing: border-box;
+    width: 300px;
 }
 
+/* Style the form card */
 .form-card {
-    background-color: #0e2433;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-}
-
-.form-title {
-    color: #45b6fe;
     text-align: center;
+    margin-bottom: 20px;
 }
 
+/* Style the form title */
+.form-title {
+    color: #fff; /* Light text color */
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+/* Style form elements */
 .form-group {
-    margin: 15px;
+    margin-bottom: 15px;
 }
 
 label {
     display: block;
-    color: #0e2433;
     font-weight: bold;
+    margin-bottom: 5px;
 }
 
-input[type="text"],
-input[type="number"] {
+input {
     width: 100%;
-    padding: 10px;
-    border: 1px solid #ccc;
+    padding: 8px;
     border-radius: 5px;
-    font-size: 16px;
+    border: 1px solid #ccc;
+    background-color: #fff; /* Light background color */
+    color: #333; /* Dark text color */
+}
+
+/* Style form buttons */
+.button-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .btn {
-    background-color: #45b6fe;
-    color: white;
-    border: none;
-    padding: 10px 20px;
+    background-color: #0099cc; /* Light blue button background color */
+    color: #fff; /* Light button text color */
+    padding: 8px 16px;
     border-radius: 5px;
+    text-transform: uppercase;
     cursor: pointer;
-    transition: background-color 0.3s;
+    width: 100px;
+    transition: background-color 0.3s ease;
+}
+.btn a {
+    text-decoration: none; /* Removes the underline from the anchor element inside the button */
+}
+
+.btn-primary {
+    background-color: #0077aa; /* Dark blue button background color */
+}
+
+.btn-danger {
+    background-color: #cc0000; /* Red button background color */
+    text-decoration: none; /* Removes the underline from the anchor element inside the button */
 }
 
 .btn:hover {
-    background-color: #0e2433;
+    background-color: #0056b3; /* Dark blue button hover background color */
+}
+
+/* Dark mode styles */
+.light-mode {
+    background-color: #adadad; /* Light background color */
+    color: #333; /* Dark text color */
+}
+
+.light-mode .container {
+    background-color: #e5e5e5; /* Light container background color */
+}
+.light-mode .form-group{
+    color: #333; /* Dark text color */
+}
+.light-mode h4{
+    color: #333; /* Dark text color */
+}
+.light-mode input {
+    background-color: #fff; /* Light background color */
+    color: #333; /* Dark text color */
+}
+
+.light-mode .btn {
+    background-color: #0099cc; /* Light blue button background color */
+}
+
+.light-mode .btn-primary {
+    background-color: #0077aa; /* Dark blue button background color */
+}
+
+.light-mode .btn-danger {
+    background-color: #cc0000; /* Red button background color */
+}
+
+.light-mode .btn:hover {
+    background-color: #0056b3; /* Dark blue button hover background color */
 }

@@ -11,6 +11,11 @@ body {
     padding: 20px;
     text-align: center;
 }
+.btn-primary {
+    background-color: #45b6fe;
+    border-color: #45b6fe;
+    color: white;
+}
 
 .header h1 {
     margin: 0;
