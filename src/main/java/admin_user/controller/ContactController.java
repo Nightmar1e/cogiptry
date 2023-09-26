@@ -53,6 +53,7 @@ public class ContactController {
         existingContact.setFirstName(contact.getFirstName());
         existingContact.setLastName(contact.getLastName());
         existingContact.setEmail(contact.getEmail());
+        existingContact.setCompany(contact.getCompany());
 
         contactService.updateContact(existingContact);
         return "redirect:/admin-page/contacts";

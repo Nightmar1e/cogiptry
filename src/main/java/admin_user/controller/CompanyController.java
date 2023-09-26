@@ -60,6 +60,7 @@ public class CompanyController {
         existingCompany.setFirstName(company.getFirstName());
         existingCompany.setLastName(company.getLastName());
         existingCompany.setEmail(company.getEmail());
+        existingCompany.setContact(company.getContact());
 
         // save updated company object
         companyService.updateCompany(existingCompany);

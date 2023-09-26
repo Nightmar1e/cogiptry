@@ -46,6 +46,7 @@
             <th> Contact First Name</th>
             <th> Contact Last Name</th>
             <th> Contact Email </th>
+            <th> company </th>
             <th> Actions </th>
         </tr>
         </thead>
@@ -55,6 +56,7 @@
             <td th:text = "${contact.firstName}"></td>
             <td th:text = "${contact.lastName}"></td>
             <td th:text = "${contact.email}"></td>
+            <td th:text = "${contact.company}"></td>
             <td>
                 <a th:href = "@{/admin-page/contacts/edit/{id}(id=${contact.id})}"
                    class = "btn btn-primary">Update</a>
