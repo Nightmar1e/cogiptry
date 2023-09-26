@@ -2,6 +2,7 @@ package admin_user.controller;
 
 import admin_user.model.Product;
 import admin_user.service.ProductService;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -33,9 +34,9 @@ public class ProductController {
     }
 
     @PostMapping("/save_products")
-    public String saveProduct(@ModelAttribute("product") Product product) {
+    public String saveProducts(@ModelAttribute Product product, HttpSession session) {
         productService.saveProduct(product);
-        return "redirect:/admin-page";
+        return "redirect:/admin-page/new";
     }
 
     @GetMapping("/edit/{id}")
