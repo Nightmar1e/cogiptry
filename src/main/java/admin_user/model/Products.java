@@ -16,7 +16,7 @@ public class Products {
     @Column(name = "product_name")
     private String productName;
 
-    private String description;
+    private String email;
     private String price;
     private String quantity;
 
@@ -28,7 +28,7 @@ public class Products {
     public Products(String productName, String description, String price, String quantity) {
         super();
         this.productName = productName;
-        this.description = description;
+        this.email = description;
         this.price = price;
         this.quantity = quantity;
     }
@@ -49,12 +49,12 @@ public class Products {
         this.productName = productName;
     }
 
-    public String getDescription() {
-        return description;
+    public String getEmail() {
+        return email;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setEmail(String description) {
+        this.email = description;
     }
 
     public String getPrice() {
@@ -75,7 +75,7 @@ public class Products {
 
     @Override
     public String toString() {
-        return "Products [id=" + id + ", productName=" + productName + ", description=" + description + ", price="
+        return "Products [id=" + id + ", productName=" + productName + ", description=" + email + ", price="
                 + price + ", quantity=" + quantity + "]";
     }
 
