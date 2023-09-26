@@ -22,7 +22,7 @@ public class ProductController {
     @GetMapping("/")
     public String listProducts(Model model) {
         List<Product> products = productService.getAllProducts();
-        model.addAttribute("products", products);
+        model.addAttribute("product", products);
         return "admin";
     }
 
