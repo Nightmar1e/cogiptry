@@ -20,7 +20,6 @@ public class Company {
     private String email;
 
     public Company() {
-
     }
 
     public Company(String firstName, String lastName, String email) {
