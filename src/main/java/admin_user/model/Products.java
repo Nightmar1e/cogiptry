@@ -20,6 +20,10 @@ public class Products {
     private String price;
     private String quantity;
 
+
+    @JoinTable(name = "users", joinColumns = @JoinColumn(name = "id"))
+    private String user;
+
     public Products() {
         super();
         // TODO Auto-generated constructor stub
@@ -72,6 +76,14 @@ public class Products {
     public void setQuantity(String quantity) {
         this.quantity = quantity;
     }
+    public String getUser() {
+        return user;
+    }
+
+    public void setUser(String user) {
+        this.user = user;
+    }
+
 
     @Override
     public String toString() {

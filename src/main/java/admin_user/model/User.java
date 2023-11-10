@@ -1,12 +1,9 @@
 package admin_user.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
-import jakarta.persistence.UniqueConstraint;
+import jakarta.persistence.*;
 import lombok.NoArgsConstructor;
+
+import java.util.List;
 
 @Entity
 @NoArgsConstructor
@@ -16,11 +13,17 @@ public class User {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
-	
+
+	@Column(unique = true)
 	private String email;
 	private String password;
 	private String role;
 	private String fullname;
+
+
+
+	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+	private List<Products> products;
 
 	public User(String email, String password, String role, String fullname) {
 		
@@ -69,14 +72,13 @@ public class User {
 	public void setFullname(String fullname) {
 		this.fullname = fullname;
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
 
+
+	public List<Products> getProducts() {
+		return products;
+	}
+
+	public void setProducts(List<Products> products) {
+		this.products = products;
+	}
 }

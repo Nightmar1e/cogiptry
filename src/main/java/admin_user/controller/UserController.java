@@ -60,15 +60,15 @@ public class UserController {
 		return "user";
 	}
 
-	@GetMapping("admin-page")
-	public String adminPage(Model model, Principal principal) {
-		UserDetails userDetails = userDetailsService.loadUserByUsername(principal.getName());
-		model.addAttribute("user", userDetails);
-		List<Products> allProducts = productService.findAll();
-		model.addAttribute("all_products", allProducts);
-
-		return "admin";
-	}
+//	@GetMapping("admin-page")
+//	public String adminPage(Model model, Principal principal) {
+//		UserDetails userDetails = userDetailsService.loadUserByUsername(principal.getName());
+//		model.addAttribute("user", userDetails);
+//		List<Products> allProducts = productService.findAll();
+//		model.addAttribute("all_products", allProducts);
+//
+//		return "admin";
+//	}
 
 
 }
