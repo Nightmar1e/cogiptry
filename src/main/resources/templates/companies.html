@@ -8,7 +8,8 @@
 </head>
 <body>
 <div class="header">
-  <h1 class="admin-title">Admin</h1>
+  <h1>Welcome [[${user.username}]] to Company Management</h1>
+  <p>Your role is: [[${userRole}]]</p>
   <div class="right-menu">
     <a id="dark-mode-toggle">Dark Mode</a>
     <a th:href="@{/logout}">Logout</a>
@@ -16,16 +17,16 @@
 </div>
 
 <div class="container">
-        <a th:href="@{/admin-page}">Products</a>
-        <a th:href="@{/admin-page/contacts}">Contacts</a>
+        <a th:href="@{/v1/dashboard}">Products</a>
+        <a th:href="@{/v1/dashboard/contacts}">Contacts</a>
 
   <div class ="container">
     <div class = "row">
       <h1> List Companies </h1>
     </div>
 
-    <div class = "row">
-        <a th:href = "@{/admin-page/companies/new}" class = "btn btn-primary"> Add Company</a>
+    <div class="row" th:if="${userRole == 'ADMIN'}">
+        <a th:href = "@{/v1/dashboard/companies/new}" class = "btn btn-primary"> Add Company</a>
     </div>
     <div class="card-body">
       <table class = "table">
@@ -34,7 +35,7 @@
           <th> Company First Name</th>
           <th> Company Last Name</th>
           <th> Company Email </th>
-          <th> Actions </th>
+          <th scope="col" th:if="${userRole == 'ADMIN'}">Action</th>
         </tr>
         </thead>
 
@@ -43,11 +44,11 @@
           <td th:text = "${company.firstName}"></td>
           <td th:text = "${company.lastName}"></td>
           <td th:text = "${company.email}"></td>
-          <td>
-            <a th:href = "@{/admin-page/companies/edit/{id}(id=${company.id})}"
+          <td th:if="${userRole == 'ADMIN'}">
+            <a th:href = "@{/v1/dashboard/companies/edit/{id}(id=${company.id})}"
                class = "btn btn-primary">Update</a>
 
-            <a th:href = "@{/admin-page/companies/{id}(id=${company.id})}"
+            <a th:href = "@{/v1/dashboard/companies/{id}(id=${company.id})}"
                class = "btn btn-danger">Delete</a>
 
           </td>
@@ -57,34 +58,10 @@
       </table>
     </div>
   </div>
-  <!-- Add this button at the top of your page, within the header div -->
 
 
 </div>
-<script>
-  const darkModeToggle = document.getElementById('dark-mode-toggle');
-  const body = document.body;
-
-  // Function to toggle between dark and light modes
-  function toggleDarkMode() {
-    body.classList.toggle('light-mode');
-    if (body.classList.contains('light-mode')) {
-      // Set the mode preference in local storage
-      localStorage.setItem('dark-mode-preference', 'light');
-    } else {
-      localStorage.setItem('dark-mode-preference', 'dark');
-    }
-  }
-
-  // Check the user's preferred mode and set it
-  const preferredMode = localStorage.getItem('dark-mode-preference');
-  if (preferredMode === 'light') {
-    toggleDarkMode(); // Switch to light mode if preferred
-  }
-
-  // Toggle dark mode on button click
-  darkModeToggle.addEventListener('click', toggleDarkMode);
-</script>
+<script th:src="@{../js/darkMode.js}"></script>
 
 </body>
 </html>

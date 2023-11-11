@@ -9,9 +9,9 @@
 <body>
 <div class="container">
       <div class="form-card">
-        <button class="btn"><a th:href="@{/admin-page/contacts}">Contacts</a></button>
+        <button class="btn"><a th:href="@{/v1/dashboard/contacts}">Contacts</a></button>
         <h1 class="form-title">Add New Contact</h1>
-          <form th:action="@{/admin-page/contacts}" th:object="${contact}" method="POST">
+          <form th:action="@{/v1/dashboard/contacts}" th:object="${contact}" method="POST">
             <div class="form-group">
               <label>Contact First Name</label>
               <input
@@ -44,7 +44,7 @@
             <div class="form-group">
               <button class="btn" id="dark-mode-toggle">Dark Mode</button>
               <button type="submit" class="btn btn-primary">Submit</button>
-              <button><a class="btn btn-danger" th:href="@{/admin-page/contacts}">Cancel</a></button>
+              <button><a class="btn btn-danger" th:href="@{/v1/dashboard/contacts}">Cancel</a></button>
             </div>
           </form>
         </div>

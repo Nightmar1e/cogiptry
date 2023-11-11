@@ -9,9 +9,9 @@
 
 <div class="container">
       <div class="form-card">
-        <button class="btn"><a th:href="@{/admin-page/companies}">Companies</a></button>
+        <button class="btn"><a th:href="@{/v1/dashboard/companies}">Companies</a></button>
         <h1 class="form-title">Add New Company</h1>
-          <form th:action="@{/admin-page/companies}" th:object="${company}" method="POST">
+          <form th:action="@{/v1/dashboard/companies}" th:object="${company}" method="POST">
             <div class="form-group">
               <label>Company First Name</label>
               <input
@@ -45,7 +45,7 @@
             <div class="form-group">
               <button class="btn" id="dark-mode-toggle">Dark Mode</button>
               <button type="submit" class="btn btn-primary">Submit</button>
-              <button><a class="btn btn-danger" th:href="@{/admin-page/companies}">Cancel</a></button>
+              <button><a class="btn btn-danger" th:href="@{/v1/dashboard/companies}">Cancel</a></button>
             </div>
           </form>
         </div>

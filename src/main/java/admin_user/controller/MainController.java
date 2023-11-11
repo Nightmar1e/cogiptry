@@ -21,7 +21,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @RequestMapping("/")
-public class UserController {
+public class MainController {
 	@Autowired
 	private PasswordEncoder passwordEncoder;
 
@@ -32,8 +32,8 @@ public class UserController {
 
 	@Autowired
 	private UserService userService;
-	
-	
+
+
 	@GetMapping("/registration")
 	public String getRegistrationPage(@ModelAttribute("user") UserDto userDto) {
 		return "register";
@@ -45,30 +45,14 @@ public class UserController {
 		model.addAttribute("message", "Registered Successfuly!");
 		return "register";
 	}
-	
+
 	@GetMapping("/login")
-	public String login() {
+	public String login(Principal principal) {
+		if (principal != null) {
+			return "redirect:/v1/dashboard";
+		}
 		return "login";
 	}
+
 	
-	@GetMapping("user-page")
-	public String userPage (Model model, Principal principal) {
-		UserDetails userDetails = userDetailsService.loadUserByUsername(principal.getName());
-		model.addAttribute("user", userDetails);
-		List<Products> allProducts = productService.findAll();
-		model.addAttribute("all_products", allProducts);
-		return "user";
-	}
-
-	@GetMapping("admin-page")
-	public String adminPage(Model model, Principal principal) {
-		UserDetails userDetails = userDetailsService.loadUserByUsername(principal.getName());
-		model.addAttribute("user", userDetails);
-		List<Products> allProducts = productService.findAll();
-		model.addAttribute("all_products", allProducts);
-
-		return "admin";
-	}
-
-
 }

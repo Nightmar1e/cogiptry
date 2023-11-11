@@ -2,12 +2,14 @@ package admin_user.controller;
 
 import admin_user.model.Contact;
 import admin_user.service.ContactService;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
-@RequestMapping("/admin-page")
+@RequestMapping("/v1/dashboard")
 public class ContactController {
     private ContactService contactService;
 
@@ -17,7 +19,14 @@ public class ContactController {
     }
 
     @GetMapping("/contacts")
-    public String listContacts(Model model) {
+    public String listContacts(Model model, Authentication authentication) {
+        String role = authentication.getAuthorities().iterator().next().getAuthority();
+        model.addAttribute("userRole", role);
+
+        UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+        model.addAttribute("user", userDetails);
+
+
         model.addAttribute("contacts", contactService.getAllContacts());
         return "contacts";
     }
@@ -34,7 +43,7 @@ public class ContactController {
     @PostMapping("/contacts")
     public String saveContact(@ModelAttribute("contact") Contact contact) {
         contactService.saveContact(contact);
-        return "redirect:/admin-page/contacts";
+        return "redirect:/v1/dashboard/contacts";
     }
 
     @GetMapping("/contacts/edit/{id}")
@@ -55,14 +64,14 @@ public class ContactController {
         existingContact.setEmail(contact.getEmail());
 
         contactService.updateContact(existingContact);
-        return "redirect:/admin-page/contacts";
+        return "redirect:/v1/dashboard/contacts";
     }
 
 
     @GetMapping("/contacts/{id}")
     public String deleteContact(@PathVariable Long id) {
         contactService.deleteContactById(id);
-        return "redirect:/admin-page/contacts";
+        return "redirect:/v1/dashboard/contacts";
     }
 
 }

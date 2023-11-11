@@ -21,17 +21,13 @@ public class CustomSuccessHandler implements AuthenticationSuccessHandler {
 			var authorities = authentication.getAuthorities();
 			var roles = authorities.stream().map(GrantedAuthority::getAuthority).findFirst();
 
-			if (roles.orElse("").equals("ADMIN")) {
-				response.sendRedirect("/admin-page");
-			} else if (roles.orElse("").equals("USER")) {
-				response.sendRedirect("/user-page");
+			if (roles.orElse("").equals("ADMIN") || roles.orElse("").equals("USER")) {
+				response.sendRedirect("/v1/dashboard");
 			} else {
 				response.sendRedirect("/error");
 			}
 		} else {
-			// Handle the case where authentication is null (e.g., unauthorized access)
-			response.sendRedirect("/login"); // Redirect to the login page or an error page.
+			response.sendRedirect("/login");
 		}
 	}
-
 }
