@@ -8,15 +8,16 @@
 </head>
 <body>
 <div class="header">
-    <h1 class="admin-title">Admin</h1>
+    <h1>Welcome [[${user.username}]] to Company Management</h1>
+    <p>Your role is: [[${userRole}]]</p>
     <div class="right-menu">
         <a id="dark-mode-toggle">Dark Mode</a>
         <a th:href="@{/logout}">Logout</a>
     </div>
 </div>
 <div class="container">
-    <a th:href="@{/admin-page}">Products</a>
-    <a th:href="@{/admin-page/companies}">Companies</a>
+    <a th:href="@{/v1/dashboard}">Products</a>
+    <a th:href="@{/v1/dashboard/companies}">Companies</a>
 
     <div class ="container">
         <div class = "row">
@@ -25,7 +26,7 @@
 
         <div class = "row">
             <div class = "col-lg-3">
-                <a th:href = "@{/admin-page/contacts/new}" class = "btn btn-primary "> Add Contact</a>
+                <a th:href = "@{/v1/dashboard/contacts/new}" class = "btn btn-primary "> Add Contact</a>
             </div>
         </div>
         <div class="card-body">
@@ -44,11 +45,11 @@
                     <td th:text = "${contact.firstName}"></td>
                     <td th:text = "${contact.lastName}"></td>
                     <td th:text = "${contact.email}"></td>
-                    <td>
-                        <a th:href = "@{/admin-page/contacts/edit/{id}(id=${contact.id})}"
+                    <td th:if="${userRole == 'ADMIN'}">
+                        <a th:href = "@{/v1/dashboard/contacts/edit/{id}(id=${contact.id})}"
                            class = "btn btn-primary">Update</a>
 
-                        <a th:href = "@{/admin-page/contacts/{id}(id=${contact.id})}"
+                        <a th:href = "@{/v1/dashboard/contacts/{id}(id=${contact.id})}"
                            class = "btn btn-danger">Delete</a>
 
                     </td>
@@ -59,30 +60,7 @@
         </div>
     </div>
 </div>
-<script>
-    const darkModeToggle = document.getElementById('dark-mode-toggle');
-    const body = document.body;
-
-    // Function to toggle between dark and light modes
-    function toggleDarkMode() {
-        body.classList.toggle('light-mode');
-        if (body.classList.contains('light-mode')) {
-            // Set the mode preference in local storage
-            localStorage.setItem('dark-mode-preference', 'light');
-        } else {
-            localStorage.setItem('dark-mode-preference', 'dark');
-        }
-    }
-
-    // Check the user's preferred mode and set it
-    const preferredMode = localStorage.getItem('dark-mode-preference');
-    if (preferredMode === 'light') {
-        toggleDarkMode(); // Switch to light mode if preferred
-    }
-
-    // Toggle dark mode on button click
-    darkModeToggle.addEventListener('click', toggleDarkMode);
-</script>
+<script th:src="@{../js/darkMode.js}"></script>
 
 </body>
 </html>

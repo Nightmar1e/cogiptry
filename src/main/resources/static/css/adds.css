@@ -133,7 +133,7 @@ body {
 
 /* Light mode styles */
 .light-mode {
-    background-color: #818181; /* Slightly darker background color */
+    background-color: #f5f5f5; /* Light background color */
     color: #333; /* Dark text color */
 }
 
@@ -143,33 +143,32 @@ body {
 }
 
 .light-mode .header a {
-    background-color: #ff5555; /* Red button background color */
+    background-color: #ff6363; /* Light red button background color */
 }
 
 .light-mode .header a:hover {
-    background-color: #cc0000; /* Red button hover background color */
+    background-color: #e60000; /* Dark red button hover background color */
 }
 
 .light-mode .container {
-    background-color: #d4d4d4; /* Light container background color */
+    background-color: #eaeaea; /* Container background color */
     color: #333; /* Dark container text color */
 }
 
-.light-mode a {
-    color: #007bff; /* Blue link color */
+.light-mode .container a {
+    color: #0066cc; /* Dark blue link color */
 }
 
 .light-mode .btn-primary {
-    background-color: #007bff; /* Blue button background color */
     color: #fff; /* Light button text color */
 }
 
 .light-mode .btn-primary:hover {
-    background-color: #0056b3; /* Dark blue button hover background color */
+    /*background-color: #004080; !* Dark blue button hover background color *!*/
 }
 
 .light-mode .table th {
-    background-color: #f2f2f2; /* Light table header background color */
+    background-color: #f0f0f0; /* Table header background color */
     color: #333; /* Dark table header text color */
 }
 

@@ -4,13 +4,15 @@ package admin_user.controller;
 
 import admin_user.model.Company;
 import admin_user.service.CompanyService;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 
 @Controller
-@RequestMapping("/admin-page")
+@RequestMapping("/v1/dashboard")
 public class CompanyController {
 
     private CompanyService companyService;
@@ -20,17 +22,22 @@ public class CompanyController {
         this.companyService = companyService;
     }
 
-    // handler method to handle list companies and return mode and view
     @GetMapping("/companies")
-    public String listCompanies(Model model) {
+    public String listCompanies(Model model, Authentication authentication) {
+        String role = authentication.getAuthorities().iterator().next().getAuthority();
+        model.addAttribute("userRole", role);
+
+        UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+        model.addAttribute("user", userDetails);
+
         model.addAttribute("companies", companyService.getAllCompanies());
         return "companies";
     }
 
+
     @GetMapping("/companies/new")
     public String createCompanyForm(Model model) {
 
-        // create company object to hold company form data
         Company company = new Company();
         model.addAttribute("company", company);
         return "add_company";
@@ -40,7 +47,7 @@ public class CompanyController {
     @PostMapping("/companies")
     public String saveCompany(@ModelAttribute("company") Company company) {
         companyService.saveCompany(company);
-        return "redirect:/admin-page/companies";
+        return "redirect:/v1/dashboard/companies";
     }
 
     @GetMapping("/companies/edit/{id}")
@@ -54,24 +61,21 @@ public class CompanyController {
                                 @ModelAttribute("company") Company company,
                                 Model model) {
 
-        // get company from database by id
         Company existingCompany = companyService.getCompanyById(id);
         existingCompany.setId(id);
         existingCompany.setFirstName(company.getFirstName());
         existingCompany.setLastName(company.getLastName());
         existingCompany.setEmail(company.getEmail());
 
-        // save updated company object
         companyService.updateCompany(existingCompany);
-        return "redirect:/admin-page/companies";
+        return "redirect:/v1/dashboard/companies";
     }
 
-    // handler method to handle delete stcompanyudent request
 
     @GetMapping("/companies/{id}")
     public String deleteCompany(@PathVariable Long id) {
         companyService.deleteCompanyById(id);
-        return "redirect:/admin-page/companies";
+        return "redirect:/v1/dashboard/companies";
     }
 
 }
